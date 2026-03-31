@@ -19,6 +19,14 @@ public class GenericTreeNode<E> {
 		// this one is a little harder.
 		// what do you do when the item has children?
 		// I suggest "give them to the parent"
+		if(theItem.children == null) // if item has no children
+		{
+			
+		}
+		else // if item has children, promote
+		{
+			
+		}
 	}
 	
 	
