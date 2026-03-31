@@ -44,6 +44,13 @@ public class OrgChartImpl implements OrgChart{
 	@Override
 	public void removeEmployee(Employee firedPerson) {
 		// TODO Auto-generated method stub
+		// loop through nodes to find fired person
+		// search all nodes to find supervisor (whoever has firedPerson in children list)
+		// calls upervisor.removeChild(firedPerson) promoting grandchildren internally; 
+		// use the removeChild in GenericTreeNode.java
+		// remove firedPerson from tree (nodes list)
+		// break out of loop
+		
 		
 	}
 
@@ -78,7 +85,7 @@ public class OrgChartImpl implements OrgChart{
 	        // Print new line between two levels
 	        System.out.println();
 		}
-		
+		System.out.println("=== BFS test complete ===");
 	}
 	
 	
