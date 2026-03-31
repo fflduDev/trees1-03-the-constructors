@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 public class OrgChartImpl implements OrgChart{
 
@@ -80,7 +81,45 @@ public class OrgChartImpl implements OrgChart{
 	@Override
 	public void showOrgChartDepthFirst() {
 		// TODO Auto-generated method stub	
-
+		if(nodes == null) {
+			return; 
+		}
+		
+		Stack<GenericTreeNode<Employee>> employeeStack=new Stack<>();
+		
+		employeeStack.push(nodes.get(0));
+		
+		while(!employeeStack.isEmpty()) {
+			GenericTreeNode currentNode=employeeStack.pop();
+			
+			ArrayList<GenericTreeNode> childNodes = currentNode.children;
+			
+			Queue<GenericTreeNode> employeeQueue = new LinkedList<>();
+			
+			employeeQueue.add(nodes.get(0));
+			while (!employeeQueue.isEmpty())
+		    {
+		        int n = employeeQueue.size();
+		 
+		        // If this node has children
+		        while (n > 0)
+		        {
+		            // Dequeue an item from queue and print it
+		            GenericTreeNode<Employee> p = employeeQueue.peek();
+		            employeeQueue.remove();
+		            System.out.print(p.data + " ");
+		 
+		            // Enqueue all children of the dequeued item
+		            for (int i = 0; i < p.children.size(); i++)
+		            	employeeQueue.add(p.children.get(i));
+		            n--;
+		        }
+		         
+		        // Print new line between two levels
+		        System.out.println();
+		    }
+			System.out.println("=== DFS test complete ===");
+		}
 	}
 
 	@Override
