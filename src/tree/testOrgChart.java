@@ -31,6 +31,17 @@ public class testOrgChart {
 		company.addDirectReport(e7, e8);
 		company.addDirectReport(e7, e9);
 		
+		/*
+		 * Our tree:
+		 *                          Jack
+		 *            /               |         \
+		 *          Katie           Tania        Jade
+		 *         /     \          /   \
+		 *       Ben    Rosy    Magnus  Anish
+		 *                              /      \
+		 *                          Jack B    Layla
+		 */
+		
 		// show it depth first
 		company.showOrgChartDepthFirst();
 		
@@ -40,6 +51,15 @@ public class testOrgChart {
 		// and remove some people
 		company.removeEmployee(e4);
 		company.removeEmployee(e5);
+		
+		/*
+		 * Our tree after removals:
+		 *                          Jack
+		 *            /           /       \         \
+		 *          Katie      Magnus    Anish      Jade
+		 *         /                     /   \
+		 *       Ben                Jack B    Layla                             
+		 */
 		
 		// show it depth first
 		company.showOrgChartDepthFirst();
