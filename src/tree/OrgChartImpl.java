@@ -68,7 +68,7 @@ public class OrgChartImpl implements OrgChart{
 			while(n>0) {
 				GenericTreeNode<Employee> peeked = employeeQueue.peek();
 	            employeeQueue.remove();
-	            System.out.print(peeked.data + " ");
+	            System.out.print(peeked.data + " | ");
 	 
 	            for (int i = 0; i < peeked.children.size(); i++)
 	            	employeeQueue.add(peeked.children.get(i));
