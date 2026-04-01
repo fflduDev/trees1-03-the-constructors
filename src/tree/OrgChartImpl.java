@@ -90,39 +90,20 @@ public class OrgChartImpl implements OrgChart{
 		
 		GenericTreeNode<Employee> root = nodes.get(0);
 		
-		Stack<GenericTreeNode> stack = new Stack<>();
+		Stack<GenericTreeNode<Employee>> stack = new Stack<>();
 		
 		stack.push(root);
 		
 		while(!stack.empty()) {
 			GenericTreeNode<Employee> currentNode=stack.pop();
+			System.out.println("Current: "+ currentNode.data);
 			
 			ArrayList<GenericTreeNode<Employee>> childNodes=currentNode.children;
 			
-			Queue<Employee> q=null;
-			
-			for (int i = childNodes.size() - 1; i >= 0; i--) {
-				q=new LinkedList<>();
-				
-				q.add(root.data);
-				
-				q.add(childNodes.get(i).data);
-				
-				ArrayList<GenericTreeNode<Employee>> c = childNodes.get(i).children;
-				
-				if(c.size() != 0) { 										
-                	for (int j = 0; j < c.size(); j++) {					
-                		
-                		if(!q.contains(childNodes.get(i).children.get(j).data)) {	
-                			q.add(childNodes.get(i).children.get(j).data);			
-                		}
-                		c = childNodes.get(i).children;
-                	}
-                }
-				for (Employee x : q)
-                	System.out.println("Current: " + x);
-            	System.out.println("--- " );
+			for(int i=0;i<childNodes.size();i++) {
+				stack.push(childNodes.get(i));
 			}
+			
 		}
 		System.out.println("=== DFS test complete ===");
 	}
