@@ -74,8 +74,17 @@ public class OrgChartImpl implements OrgChart{
 			{
 				supervisor.removeChild(firedPerson); // remove that firee from their child list
 			}
-			
 		}
+		
+		// removes from nodes list
+		for(int k = 0; k < nodes.size(); k++)
+		{
+			if(nodes.get(k).data.equals(firedPerson))
+			{
+				nodes.remove(nodes.get(k));
+			}
+		}
+		
 
 	}
 
