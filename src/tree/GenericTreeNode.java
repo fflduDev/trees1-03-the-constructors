@@ -23,9 +23,9 @@ public class GenericTreeNode<E> {
 		// locate child in children ArrayList
 		for(int i = 0; i < children.size(); i++)
 		{
-			if(children.get(i).equals(theItem))
+			if(children.get(i).data.equals(theItem))
 			{
-				if(children.get(i).children == null) // if item has no children,
+				if(children.get(i).children.isEmpty()) // if item has no children,
 				{
 					// remove them from parent's list of children -> done
 					children.remove(children.get(i));

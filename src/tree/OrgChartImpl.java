@@ -49,8 +49,7 @@ public class OrgChartImpl implements OrgChart{
 		// TODO Auto-generated method stub
 		// loop through nodes to find fired person
 		// search all nodes to find supervisor (whoever has firedPerson in children list)
-		// call supervisor.removeChild(firedPerson) promoting grandchildren internally; 
-		// use the removeChild in GenericTreeNode.java
+		// call supervisor.removeChild(firedPerson) promoting grandchildren internally
 		// remove firedPerson from tree (nodes list)
 		// break out of loop
 	
@@ -61,9 +60,9 @@ public class OrgChartImpl implements OrgChart{
 			GenericTreeNode<Employee> currentEmployee = nodes.get(i); // traverser
 			for(int j = 0; j < currentEmployee.children.size(); j++)  // go through employee children
 			{
-				if(currentEmployee.children.get(j).equals(firedPerson)) // find if firee is in that list
+				if(currentEmployee.children.get(j).data.equals(firedPerson)) // find if firee is in that list, compare data
 				{
-					supervisor = currentEmployee.children.get(j); // assign supervisor
+					supervisor = currentEmployee; // assign supervisor
 				}
 			}
 		}
@@ -76,8 +75,8 @@ public class OrgChartImpl implements OrgChart{
 				supervisor.removeChild(firedPerson); // remove that firee from their child list
 			}
 			
-			break;
 		}
+
 	}
 
 	@Override
