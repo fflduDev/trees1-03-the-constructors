@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.Vector;
+
 
 public class OrgChartImpl implements OrgChart{
 
@@ -80,46 +82,49 @@ public class OrgChartImpl implements OrgChart{
 
 	@Override
 	public void showOrgChartDepthFirst() {
-		// TODO Auto-generated method stub	
-		if(nodes == null) {
-			return; 
+		// TODO Auto-generated method stub
+
+		if (nodes.isEmpty()) {
+			return;
+		} 
+		
+		GenericTreeNode<Employee> root = nodes.get(0);
+		
+		Stack<GenericTreeNode> stack = new Stack<>();
+		
+		stack.push(root);
+		
+		while(!stack.empty()) {
+			GenericTreeNode<Employee> currentNode=stack.pop();
+			
+			ArrayList<GenericTreeNode<Employee>> childNodes=currentNode.children;
+			
+			Queue<Employee> q=null;
+			
+			for (int i = childNodes.size() - 1; i >= 0; i--) {
+				q=new LinkedList<>();
+				
+				q.add(root.data);
+				
+				q.add(childNodes.get(i).data);
+				
+				ArrayList<GenericTreeNode<Employee>> c = childNodes.get(i).children;
+				
+				if(c.size() != 0) { 										
+                	for (int j = 0; j < c.size(); j++) {					
+                		
+                		if(!q.contains(childNodes.get(i).children.get(j).data)) {	
+                			q.add(childNodes.get(i).children.get(j).data);			
+                		}
+                		c = childNodes.get(i).children;
+                	}
+                }
+				for (Employee x : q)
+                	System.out.println("Current: " + x);
+            	System.out.println("--- " );
+			}
 		}
-		
-		Stack<GenericTreeNode<Employee>> employeeStack=new Stack<>();
-		
-		employeeStack.push(nodes.get(0));
-		
-		while(!employeeStack.isEmpty()) {
-			GenericTreeNode currentNode=employeeStack.pop();
-			
-			ArrayList<GenericTreeNode> childNodes = currentNode.children;
-			
-			Queue<GenericTreeNode> employeeQueue = new LinkedList<>();
-			
-			employeeQueue.add(nodes.get(0));
-			while (!employeeQueue.isEmpty())
-		    {
-		        int n = employeeQueue.size();
-		 
-		        // If this node has children
-		        while (n > 0)
-		        {
-		            // Dequeue an item from queue and print it
-		            GenericTreeNode<Employee> p = employeeQueue.peek();
-		            employeeQueue.remove();
-		            System.out.print(p.data + " ");
-		 
-		            // Enqueue all children of the dequeued item
-		            for (int i = 0; i < p.children.size(); i++)
-		            	employeeQueue.add(p.children.get(i));
-		            n--;
-		        }
-		         
-		        // Print new line between two levels
-		        System.out.println();
-		    }
-			System.out.println("=== DFS test complete ===");
-		}
+		System.out.println("=== DFS test complete ===");
 	}
 
 	@Override
