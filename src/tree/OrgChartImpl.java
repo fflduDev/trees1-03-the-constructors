@@ -23,6 +23,7 @@ public class OrgChartImpl implements OrgChart{
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
+		nodes.clear();
 		
 	}
 
